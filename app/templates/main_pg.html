@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main_pg.css') }}">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
 </head>
 <body>
     <div id="caixa-central">
         <div id="centralizar-sub-caixa">
             <div id="item-sobre">
-                <div id="img"><img src="{{ url_for('static', filename='images/victor.jpg') }}" alt=""></div>
-                <div id="social">redes sociais</div>
-                <div id="sobre">sobre mim</div>
+                <div id="img"><img src="{{ url_for('static', filename='images/linkedin.jpg') }}" alt=""></div>
+                <div id="name"><h3>Victor Rodrigues</h3></div>
+                <div id="social">
+                    <a href="" class="social-link" target="_blank">
+                        <i class="ph ph-linkedin-logo"></i>
+                    </a>
+                    <a href="" class="social-link" target="_blank">
+                        <i class="ph ph-github-logo"></i>
+                    </a>
+                </div>
+                <div id="sobre">About me</div>
             </div>
             <div id="item-projetos">2</div>
         </div>

@@ -1,8 +1,12 @@
+body {
+    background-color: #F2F5F9;
+}
+
 #caixa-central {
     margin-top: 27px;
-    height: 70vh;
+    height: 90vh;
     max-height: 70%;
-    background-color: blueviolet;
+    background-color: #F2F5F9;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,52 +17,90 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 90%;
+    height: 98%;
     width: 98%;
-    background-color: white;
+    background-color: #F2F5F9;
     
 }
 
 #item-projetos {
-    height: 90%;
+    height: 100%;
     width: 75%;
-    background-color: gray;
+    background-color: #FFF;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
 #item-sobre {
-    height: 90%;
+    height: 100%;
     width: 22%;
-    background-color: gray;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     gap: 5px;
-}
-
-#img {
-    height: 30%;
-    width: 90%;
-    background-color: bisque;
+    background-color: #FFF;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
 #social {
-    height: 30%;
+    height: 10%;
     width: 90%;
-    background-color: bisque;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #sobre {
-    height: 30%;
+    height: 56%;
     width: 90%;
-    background-color: bisque;
 }
 
-img {
+.social-link {
+    margin: 0px 6px;
+    font-size: 25px;
+    gap: 10px;
+    border-radius: 4px;
+    background-color: #F2F5F9;
+    color: #2C2D2E;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    transition: all 0.1s;
+}
+
+.social-link:hover {
+    color: #fff;
+    padding: 7px 7px 13px 7px;
+    font-size: 30px;
+    background: #107fd2;
+    transform: translateY(-10px)
+}
+
+#name {
+    height: 5%;
+    width: 90%;    
+}
+h3 {
+    margin: 0;
+}
+
+#img {
     margin-top: 5px;
-    width: 150px;          /* largura da imagem */
-    height: 150px;         /* altura da imagem */
-    border-radius: 50%;    /* deixa totalmente redonda */
-    object-fit: cover;     /* mantém a proporção e corta se necessário */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 90%;
+}
+
+
+img {
+    width: 60%;          
+    height: 96%;         
+    border-radius: 50%;   
+    object-fit: cover;    
 }
