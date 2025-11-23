@@ -22,6 +22,7 @@ item-home-site {
     font-size: 25px;
 }
 
+/*
 
 #item-sobre {
     height: 100%;
@@ -37,6 +38,7 @@ item-home-site {
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
 }
 
+*/
 #social {
     height: 42px;
     width: 65%;
@@ -110,12 +112,12 @@ h3 {
 
 
 #ultimas-postagens {
-    height: 70%;
     width: 99%;
     display: flex;
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
+    margin-top: 15px;
 }
 
     #caixa-central {
@@ -156,8 +158,7 @@ h3 {
     gap: 5px;
     background-color: #FFF;
     box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-
-    height: 50vh;
+    height: 300px;
     width: 95vw;
     display: flex;
     flex-direction: row;
@@ -209,3 +210,67 @@ h3 {
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     cursor: pointer;
 }
+
+
+
+@media (max-width: 580px) {
+
+    #titulo-sobre {
+    font-size: 22px;
+    margin-top: 1px;
+    margin-bottom: 8px;
+    }
+
+    #img{
+        height: 190px;
+        justify-content: space-around;
+    }
+
+    #sobre {
+        height: 240px;
+    }
+
+    #sobre-blog-me {
+        font-size: 16px;
+    }
+
+    #item-sobre {
+    height: 500px;
+    flex-direction: column;
+    }
+
+    #img2 {
+        height: 100px;
+        width: 200px;
+        
+    }
+
+    img {
+        height: 90px;
+        width: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-top: 5px;
+    }
+
+    #name {
+        height: 18px;
+        width: 65%;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    #ultimas-postagens {
+        height: auto;
+        margin-top: 5px;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+/*
+
+from app import create_app
+
+app = create_app()
