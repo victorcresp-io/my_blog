@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Olá este é meu site"> 
     <title>Dataengineervictor</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main_pg.css') }}">
     <link rel="shortcut icon" href=" {{ url_for('static', filename='images/database.png') }}" type="image/x-icon">
@@ -12,8 +13,8 @@
 <body>
     <div id="caixa-central">
         <div id="centralizar-sub-caixa">
-            <div id="item-sobre">
-                <div id="img">
+            <header id="item-sobre">
+                <section id="img">
                     <div id="img2"><img src="{{ url_for('static', filename='images/linkedin.jpg') }}" alt=""></div>
                     <span id="name">Victor Rodrigues</span>
                     <span id="social">
@@ -24,22 +25,22 @@
                             <i class="ph ph-github-logo"></i>
                         </a>
                     </span>
-                </div>
-                <div id="sobre">
+                </section>
+                <section id="sobre">
                     <span id="titulo-sobre">About this blog and me</span>
                     <div id="sobre-blog-me">
-                        Hello, everyone. I am Victor Rodrigues and I've developed this blog for posting everything that I have been learning in the world of data engineering. It has some posts that is not about data engineering on topics called 'Free Discussions'. I hope that something here can help you all as well! This blog still in developing and I will use my free time for improving it.</div>
-
+                        Hello, everyone. I am Victor Rodrigues and I've developed this blog for posting everything that I have been learning in the world of data engineering. It has some posts that is not about data engineering on topics called 'Free Discussions'. I hope that something here can help you all as well! This blog still in developing and I will use my free time for improving it.
                     </div>
-                </div>
-            <div id="item-projetos">
-                <div id="ultimas-postagens">
+                </section>
+            </header>
+            <section id="item-projetos">
+                <nav id="ultimas-postagens">
                     <a class="card" href="">Google Cloud</a>
                     <a class="card" href="">Apache Airflow</a>
                     <a class="card" href="">Dbt</a>
                     <a class="card" href="">Free Discussions</a>
-                </div>
-            </div>
+                </nav>
+            </section>
         </div>
     </div>
 </body>
