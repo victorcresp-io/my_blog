@@ -3,6 +3,8 @@ import sqlite3
 
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
+from .utils import get_db, close_db
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -15,6 +17,7 @@ def create_app(test_config=None):
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
+        
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
@@ -23,36 +26,35 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+    app.teardown_appcontext(close_db)
 
     # a simple page that says hello
     @app.route('/')
     def hello():
-        return render_template('main_pg.html')
-    @app.route('/publicar', methods=['POST'])
+        db = get_db()
+        row = db.execute("SELECT * FROM users").fetchall()
+        
+        return render_template('main_pg.html', posts = row)
+    @app.route('/publicar', methods=['GET','POST'])
     def publicar():
-        titulo = request.form['titulo']
-        conteudo = request.form['conteudo']
-        topico = 'Google Cloud'
-        data = '09/11/2025'
+        if request.method == 'POST':
+            titulo = request.form['titulo']
+            conteudo = request.form['conteudo']
+            topico = 'Google Cloud'
+            data = '09/11/2025'
 
+            db = get_db()
+            
 
-        load_dotenv()
-        database_url = os.getenv('DATABASE') 
-        DATABASE = database_url
-        #os.makedirs(os.path.dirname(DATABASE), exist_ok=True)
-        conn = sqlite3.connect(DATABASE)
-        cursor = conn.cursor()
+            db.execute("""
+            INSERT INTO users (titulo, conteudo, topico, data)
+            VALUES (?, ?, ?, ?);
+            """, (titulo, conteudo, topico, data))
+            db.commit()
 
-        cursor.execute("""
-        INSERT INTO users (titulo, conteudo, topico, data)
-        VALUES (?, ?, ?, ?);
-        """, (titulo, conteudo, topico, data));
-
-        conn.commit()
-        conn.close()    
-        print(titulo)
-        print(conteudo)
-        return 'deu certo'
+            print(titulo)
+            print(conteudo)
+        return render_template("post.html")
 
     def get_db_connection():
         load_dotenv()
@@ -64,13 +66,13 @@ def create_app(test_config=None):
 
     @app.route("/posts")
     def listar_posts():
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute("SELECT conteudo, titulo FROM users")
-        posts = cursor.fetchone()
-        print(posts[1])
-        conn.close()
-
-        return render_template("post.html", posts=posts)
+        post_id = request.args.get("id", type=int)
+        db = get_db()
+        row = db.execute("SELECT * FROM users WHERE id = ?", (post_id,)).fetchone()
+        #conn = get_db()
+        #cursor = conn.cursor()
+        #cursor.execute("SELECT conteudo, titulo FROM users")
+        #res = cursor.fetchall()
+        return render_template("postagens.html", posts=row)
 
     return app
