@@ -41,6 +41,10 @@
                     <a class="card" href="">Free Discussions</a>
                 </nav>
             </section>
+
+                {% for post in posts %}
+                    <a href="/posts?id={{ post.id }}">{{ post.titulo }}</a><br>
+                {% endfor %}
         </div>
     </div>
 </body>
