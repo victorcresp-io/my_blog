@@ -34,6 +34,16 @@
                 </section>
             </header>
             <section id="item-projetos">
+                <section id="list-post">
+                    <span id="last-post">Last Posts</span>
+                    <nav>
+                    {% for post in posts %}
+                        <a href="/posts?id={{ post.id }}">{{ post.titulo }}</a><br>
+                    {% endfor %}
+                    </nav>
+                </section>
+
+
                 <nav id="ultimas-postagens">
                     <a class="card" href="">Google Cloud</a>
                     <a class="card" href="">Apache Airflow</a>
@@ -41,10 +51,6 @@
                     <a class="card" href="">Free Discussions</a>
                 </nav>
             </section>
-
-                {% for post in posts %}
-                    <a href="/posts?id={{ post.id }}">{{ post.titulo }}</a><br>
-                {% endfor %}
         </div>
     </div>
 </body>
