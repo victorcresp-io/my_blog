@@ -29,7 +29,7 @@
                 <section id="sobre">
                     <span id="titulo-sobre">About this blog and me</span>
                     <div id="sobre-blog-me">
-                        Hello, everyone. I am Victor Rodrigues and I've developed this blog for posting everything that I have been learning in the world of data engineering. It has some posts that is not about data engineering on topics called 'Free Discussions'. I hope that something here can help you all as well! This blog still in developing and I will use my free time for improving it.
+                        Hello, everyone. I am Victor Rodrigues and I've developed this blog for posting everything that I learn in the world of data engineering. It has some posts that is not about data engineering on 'Free Discussions'. I hope that something here help you all as well! This blog is still in developing and I will use my free time for improving it.
                     </div>
                 </section>
             </header>
@@ -37,9 +37,16 @@
                 <section id="list-post">
                     <span id="last-post">Last Posts</span>
                     <nav>
-                    {% for post in posts %}
-                        <a href="/posts?id={{ post.id }}">{{ post.titulo }}</a><br>
-                    {% endfor %}
+                        <ul>
+                            {% for post in posts %}
+                                <li>
+                                    <a class="formatar-link" href="/posts?id={{ post.id }}">
+                                        {{ post.titulo }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
                     </nav>
                 </section>
 
