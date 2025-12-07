@@ -4,14 +4,19 @@ import sqlite3
 from dotenv import load_dotenv
 from flask import Flask, render_template, request
 from .utils import get_db, close_db
+from dotenv import load_dotenv
 
+load_dotenv()
+
+DATABASE = os.getenv('DATABASE') 
+print(DATABASE)
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        DATABASE=DATABASE,
     )
 
     if test_config is None:
