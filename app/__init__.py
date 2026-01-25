@@ -39,7 +39,7 @@ def create_app(test_config=None):
         db = get_db()
         row = db.execute("SELECT * FROM users").fetchall()
         
-        return render_template('main_pg.html', posts = row)
+        return render_template('teste.html', posts = row)
     @app.route('/publicar', methods=['GET','POST'])
     def publicar():
         if request.method == 'POST':

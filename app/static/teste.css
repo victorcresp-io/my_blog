@@ -1,0 +1,56 @@
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+
+
+    background: url('./images/img_fundo_pg_main.png');
+    background-size: cover;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+header {
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    width: 97%;
+
+}
+
+nav {
+    display: flex;
+    gap: 32px;
+}
+
+
+
+a {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+
+#title-subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto 3px auto;
+    text-align: center;
+    width: 97%;
+}
+
+#title-subtitle h1, h3 {
+    color: white;
+    margin: 8px auto;
+}
