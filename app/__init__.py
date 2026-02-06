@@ -8,15 +8,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE = os.getenv('DATABASE') 
-print(DATABASE)
+secret_key = os.getenv('key') 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=DATABASE,
+        SECRET_KEY=secret_key,
+        DATABASE=os.path.join(app.instance_path, 'site_pessoal.sqlite'),
     )
 
     if test_config is None:
@@ -79,5 +78,9 @@ def create_app(test_config=None):
         #cursor.execute("SELECT conteudo, titulo FROM users")
         #res = cursor.fetchall()
         return render_template("postagens.html", posts=row)
+    
+    from . import utils
+    utils.init_app(app)
+    
 
     return app
