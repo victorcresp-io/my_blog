@@ -1,48 +1,43 @@
 import sqlite3
+from datetime import datetime
 import os
 
-from flask import g
-from dotenv import load_dotenv
-
-load_dotenv()
-database_url = os.getenv('DATABASE') 
-DATABASE = database_url
+import click
+from flask import current_app, g
 
 
 def get_db():
-    if "db" not in g:
-        g.db = sqlite3.connect(DATABASE)
+    if 'db' not in g:
+        g.db = sqlite3.connect(
+            current_app.config['DATABASE'],
+            detect_types=sqlite3.PARSE_DECLTYPES
+        )
         g.db.row_factory = sqlite3.Row
+
     return g.db
 
-def close_db(exception):
-    db = g.pop("db", None)
+
+def close_db(e=None):
+    db = g.pop('db', None)
+
     if db is not None:
         db.close()
 
 
-DATABASE = database_url
+def init_db():
+    db = get_db()
+
+    with current_app.open_resource('schema.sql') as f:
+        db.executescript(f.read().decode('utf8'))
 
 
-print(DATABASE)
-
-os.makedirs(os.path.dirname(DATABASE), exist_ok=True)
-
-conn = sqlite3.connect(DATABASE)
-
-
+@click.command('init-db')
+def init_db_command():
+    """Clear the existing data and create new tables."""
+    init_db()
+    click.echo('Initialized the database.')
 
 
-cursor = conn.cursor()
-print('ok')
-
-
-cursor.execute("""
-SELECT sql
-FROM sqlite_master
-WHERE type='table' AND name='users';
-""")
-
-res = cursor.fetchall()
-print(res)
-
+def init_app(app):
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
