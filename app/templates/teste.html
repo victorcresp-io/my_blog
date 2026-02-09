@@ -8,12 +8,18 @@
 </head>
 <body>
     <header>
-        <a href="{{ url_for('hello') }}">Dataengineervictor</a>
+        <a href="{{ url_for('home') }}">Dataengineervictor</a>
 
         <nav>
             <a href="#">About me</a>
             <a href="#">Content</a>
-            <a href="#">Search</a>
+            <div class="autocomplete">
+            <input type="text" id="termo" placeholder="Search for">
+            <button type="button">Search</button>
+
+            <div id="sugestoes" class="sugestoes hidden"></div>
+            </div>
+
         </nav>
     </header>
 
@@ -22,6 +28,65 @@
             <h1>Blog's Victor Rodrigues About Data Engineer</h1>
             <h3>Hello! Welcome to my blog. This blog has been developing for posting my projects and my studies about data engineering.</h3>
         </section>
+        <section id="last-posts">
+            oi
+        </section>
     </main>
+
+<script>
+const input = document.getElementById("termo");
+const sugestoes = document.getElementById("sugestoes");
+
+input.addEventListener("input", () => {
+  const termo = input.value;
+
+  if (termo.length < 2) {
+    fecharSugestoes();
+    return;
+  }
+
+  fetch(`/autocomplete?termo=${encodeURIComponent(termo)}`)
+    .then(res => res.json())
+    .then(dados => {
+      sugestoes.innerHTML = "";
+
+      if (dados.length === 0) {
+        fecharSugestoes();
+        return;
+      }
+
+      dados.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "sugestao-item";
+        div.textContent = item.titulo;
+
+        div.addEventListener("click", () => {
+          window.location.href = item.url;
+        });
+
+        sugestoes.appendChild(div);
+      });
+
+      sugestoes.classList.remove("hidden");
+    });
+});
+
+function fecharSugestoes() {
+  sugestoes.classList.add("hidden");
+  sugestoes.innerHTML = "";
+}
+
+/* Fecha ao clicar fora */
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".autocomplete")) {
+    fecharSugestoes();
+  }
+});
+</script>
+
+
+
+
+
 </body>
 </html>

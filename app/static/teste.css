@@ -20,8 +20,11 @@ header {
 }
 
 nav {
+    height: 50px;
     display: flex;
-    gap: 32px;
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -58,6 +61,13 @@ main {
     margin: 8px auto;
 }
 
+#last-posts {
+    width: 75%;
+    background-color: white;
+    height: 400px;
+    margin: 30px auto 0px auto;
+}
+
 
 @media (max-width: 768px) {
     header {
@@ -74,3 +84,47 @@ main {
         margin: 25px auto 0 auto;
     }
 }
+
+
+.autocomplete {
+    position: relative;
+}
+
+.autocomplete input,
+.autocomplete button {
+  font-size: 20px;
+  padding: 8px 12px;
+}
+
+
+.sugestoes {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+  max-height: 180px;
+  overflow-y: auto;
+
+  z-index: 1000;
+}
+
+.sugestao-item {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.sugestao-item:hover {
+  background-color: #f0f0f0;
+}
+
+.hidden {
+  display: none;
+}
+
