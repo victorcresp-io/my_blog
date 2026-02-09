@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 from dotenv import load_dotenv
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify, url_for
 from .utils import get_db, close_db
 from dotenv import load_dotenv
 
@@ -32,9 +32,9 @@ def create_app(test_config=None):
         pass
     app.teardown_appcontext(close_db)
 
-    # a simple page that says hello
     @app.route('/')
-    def hello():
+    def home():
+        termo = request.args.get("termo", "")
         db = get_db()
         row = db.execute("SELECT * FROM users").fetchall()
         
@@ -79,6 +79,25 @@ def create_app(test_config=None):
         #res = cursor.fetchall()
         return render_template("postagens.html", posts=row)
     
+    @app.route("/autocomplete")
+    def autocomplete():
+        termo = request.args.get("termo", "")
+
+        db = get_db()
+        rows = db.execute(
+            "SELECT id, titulo FROM users WHERE titulo LIKE ?",
+            (f"%{termo}%",)
+        ).fetchall()
+
+        return jsonify([
+            {
+                "id": r["id"],
+                "titulo": r["titulo"],
+                "url": url_for("listar_posts", id=r["id"])
+            }
+            for r in rows
+        ])
+
     from . import utils
     utils.init_app(app)
     
